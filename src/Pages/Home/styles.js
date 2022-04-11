@@ -5,7 +5,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--bg-dark-theme);
+  background-color: ${props => props.theme.colors.background};
   height: 100vh;
 
   .container-content {
@@ -35,7 +35,7 @@ export const Container = styled.div`
           outline: none;
           display: flex;
           align-items: center;
-          color: var(--color-dark-theme);
+          color: ${props => props.theme.colors.text};
           font-family: 'IBM Plex Mono';
           font-weight: 600;
           font-size: 11px;
@@ -55,7 +55,7 @@ export const Container = styled.div`
         align-items: center;
         gap: 20px;
         padding: 8px 8px 8px 25px;
-        background-color: var(--card-dark-theme);
+        background-color: ${props => props.theme.colors.primary};
         border-radius: 12px;
 
         img {
@@ -70,10 +70,10 @@ export const Container = styled.div`
           width: 76%;
           font-family: 'Space Mono';
           font-size: 15px;
-          color: var(--color-dark-theme);
+          color: ${props => props.theme.colors.text};
 
           &::placeholder {
-            color: var(--color-dark-theme);
+            color: ${props => props.theme.colors.text};
             font-family: 'Space Mono';
             font-size: 15px;
           }
@@ -85,17 +85,17 @@ export const Container = styled.div`
           border-radius: 8px;
           outline: none;
           border: none;
-          background-color: var(--blue-button);
+          background-color: ${props => props.theme.colors.secondary};
           font-family: 'Space Mono';
           font-size: 14px;
           font-weight: 600;
-          color: var(--color-dark-theme);
+          color: ${props => props.theme.colors.text};
           cursor: pointer;
 
           transition: all ease 0.2s;
 
           &:hover {
-            background-color: var(--blue-button-hover);
+            background-color: ${props => props.theme.colors.buttonHover};
           }
         }
       }
@@ -103,7 +103,7 @@ export const Container = styled.div`
     .card {
       width: 100%;
       display: flex;
-      background: var(--card-dark-theme);
+      background: ${props => props.theme.colors.primary};
       padding: 40px;
       gap: 40px;
       border-radius: 12px;
@@ -125,25 +125,25 @@ export const Container = styled.div`
             font-family: 'IBM Plex Mono';
             margin-bottom: 15px;
             h2 {
-              color: var(--color-dark-theme);
+              color: ${props => props.theme.colors.text};
               font-size: 22px;
             }
 
             p {
-              color: var(--blue-button);
+              color: ${props => props.theme.colors.secondary};
               font-size: 12px;
             }
           }
           .joined {
             font-family: 'Space Mono';
-            color: var(--color-dark-theme);
+            color: ${props => props.theme.colors.text};
             font-size: 12px;
             margin-bottom: 20px;
           }
         }
 
         .bio {
-          color: var(--color-dark-theme);
+          color: ${props => props.theme.colors.text};
           font-family: 'Space Mono';
           margin-bottom: 20px;
           font-size: 14px;
@@ -152,7 +152,7 @@ export const Container = styled.div`
         }
 
         .bio-not-available {
-          color: var(--not-available);
+          color: ${props => props.theme.colors.notAvailable};
         }
 
         .box-follow {
@@ -161,9 +161,9 @@ export const Container = styled.div`
           align-items: flex-start;
           justify-content: space-around;
           padding: 10px;
-          background-color: var(--bg-dark-theme);
+          background-color: ${props => props.theme.colors.background};
           border-radius: 12px;
-          color: var(--color-dark-theme);
+          color: ${props => props.theme.colors.text};
           font-family: 'Space Mono';
           margin-bottom: 30px;
 
@@ -183,7 +183,7 @@ export const Container = styled.div`
         }
         .box-info {
           display: flex;
-          color: var(--color-dark-theme);
+          color: ${props => props.theme.colors.text};
           gap: 40px;
           font-family: 'Space Mono';
           font-size: 12px;
@@ -213,7 +213,7 @@ export const Container = styled.div`
 
             .info-not-available {
               p {
-                color: var(--not-available);
+                color: ${props => props.theme.colors.notAvailable};
               }
 
               img {

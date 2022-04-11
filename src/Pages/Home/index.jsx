@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import logoIcon from '../../assets/logo.svg'
 import lightIcon from '../../assets/light-icon.svg'
 import searchIcon from '../../assets/search-icon.svg'
@@ -7,12 +7,14 @@ import linkIcon from '../../assets/link-icon.svg'
 import twitterIcon from '../../assets/twitter-icon.svg'
 import companyIcon from '../../assets/business-icon.svg'
 import api from '../../services/api'
+import { ThemeContext } from "styled-components";
 
 import { Container } from "./styles";
 
-export function Home() {
+export function Home({ toggleTheme }) {
 const [repository, setRepository] = useState()
 const [username, setUsername] = useState('')
+const { title } = useContext(ThemeContext)
 
   async function getGithubInfo(event) {
     event.preventDefault()
@@ -28,7 +30,13 @@ const [username, setUsername] = useState('')
         <div className={repository ? "header-container" : "header-container position-top"}>
           <div className="header-box">
             <img src={logoIcon} alt="Logo" className="logo" />
-            <button className="btn-theme">LIGHT<img src={lightIcon} alt="Light icon" /></button>
+            <button 
+              className="btn-theme"
+              onChange={toggleTheme}
+            >
+              LIGHT
+              <img src={lightIcon} alt="Light icon" />
+            </button>
           </div>
           <form className="input-box" onSubmit={getGithubInfo}>
             <img src={searchIcon} alt="Search Icon" />
