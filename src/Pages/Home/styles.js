@@ -257,13 +257,45 @@ export const Container = styled.div`
       width: 100%;
       display: flex;
       background: ${props => props.theme.colors.primary};
-      padding: 40px;
-      gap: 40px;
+      padding: 20px;
+      gap: 20px;
       border-radius: 12px;
       box-shadow: 0px 10px 32px 0px #0000001c;
+      font-family: 'IBM Plex Mono';
+      align-items: center;
+      justify-content: center;
 
-      p {
-        font-size: 30px;
+      .content-404 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: ${props => props.theme.colors.notAvailable};
+        font-size: 20px;
+
+        .text-404 {
+          color: ${props => props.theme.colors.secondary};
+        }
+
+        .first-404 {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 30px;
+          width: 100%;
+          text-align: center;
+
+          p {
+            font-size: 200px;
+          }
+
+          .ufo-404 {
+            height: fit-content;
+            width: 160px;
+            filter: invert(65%) sepia(13%) saturate(335%) hue-rotate(189deg)
+              brightness(88%) contrast(87%);
+          }
+        }
       }
     }
   }
@@ -336,6 +368,22 @@ export const Container = styled.div`
 
             .row {
               width: 90%;
+            }
+          }
+        }
+      }
+      .card-404 {
+        .content-404 {
+          font-size: 17px;
+          text-align: center;
+
+          .first-404 {
+            p {
+              font-size: 100px;
+            }
+
+            .ufo-404 {
+              width: 80px;
             }
           }
         }

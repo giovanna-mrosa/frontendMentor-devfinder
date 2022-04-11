@@ -7,8 +7,10 @@ import locationIcon from '../../assets/location-icon.svg'
 import linkIcon from '../../assets/link-icon.svg'
 import twitterIcon from '../../assets/twitter-icon.svg'
 import companyIcon from '../../assets/business-icon.svg'
+import ufoIcon from '../../assets/ufo.svg'
 import api from '../../services/api'
 import { ThemeContext } from "styled-components";
+import ReactFloaterJs from 'react-floaterjs'
 
 import { Container } from "./styles";
 
@@ -92,7 +94,16 @@ const { title } = useContext(ThemeContext)
         
         {repository === 'Not Found'
           ? <div className="card-404">
-              <p>Not Found 😢</p>
+              <div className="content-404">
+                <div className="first-404">
+                  <p>4</p>
+                  <ReactFloaterJs>
+                  <img src={ufoIcon} alt="UFO Icon" className="ufo-404" />
+                  </ReactFloaterJs>                  
+                  <p>4</p>
+                </div>
+                <p className="text-404">Sorry, this person was abductee.</p>
+              </div>
             </div>
           : <div 
               className={repository 

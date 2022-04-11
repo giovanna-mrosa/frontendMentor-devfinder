@@ -1007,7 +1007,7 @@
     "@babel/plugin-transform-react-jsx-development" "^7.16.7"
     "@babel/plugin-transform-react-pure-annotations" "^7.16.7"
 
-"@babel/preset-typescript@^7.16.0":
+"@babel/preset-typescript@^7.16.0", "@babel/preset-typescript@^7.6.0":
   version "7.16.7"
   resolved "https://registry.yarnpkg.com/@babel/preset-typescript/-/preset-typescript-7.16.7.tgz#ab114d68bb2020afc069cd51b37ff98a046a70b9"
   integrity sha512-WbVEmgXdIyvzB77AQjGBEyYPZx+8tTsO50XtfozQrkW8QB2rLJpH2lgx0TRw5EJrBxOZQ+wCcyPVQvS8tjEHpQ==
@@ -7097,6 +7097,13 @@ react-error-overlay@^6.0.10:
   version "6.0.10"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.10.tgz#0fe26db4fa85d9dbb8624729580e90e7159a59a6"
   integrity sha512-mKR90fX7Pm5seCOfz8q9F+66VCc1PGsWSBxKbITjfKVQHMNF2zudxHnMdJiB1fRCb+XsbQV9sO9DCkgsMQgBIA==
+
+react-floaterjs@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/react-floaterjs/-/react-floaterjs-1.0.6.tgz#049b4a3fb25299e8e73510ff7618a42b8ae52e30"
+  integrity sha512-y7qQ0rDqGIfzA/vDM6Op++4vX9zbskRXszMMmkr+hZ5PmKr267XLZjiGBwVdK1552XLLsPQaD3buaFj0b1GcWQ==
+  dependencies:
+    "@babel/preset-typescript" "^7.6.0"
 
 react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"
