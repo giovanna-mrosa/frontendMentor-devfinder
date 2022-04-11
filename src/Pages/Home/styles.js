@@ -6,7 +6,8 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   background-color: ${props => props.theme.colors.background};
-  height: 100vh;
+  padding: 50px 0;
+  height: max-content;
 
   .container-content {
     width: 50%;
