@@ -1,6 +1,7 @@
-import React, { useState, useContext } from "react";
+import React, { useContext, useState } from "react";
 import logoIcon from '../../assets/logo.svg'
 import lightIcon from '../../assets/light-icon.svg'
+import darkIcon from '../../assets/dark-icon.svg'
 import searchIcon from '../../assets/search-icon.svg'
 import locationIcon from '../../assets/location-icon.svg'
 import linkIcon from '../../assets/link-icon.svg'
@@ -19,27 +20,59 @@ const { title } = useContext(ThemeContext)
   async function getGithubInfo(event) {
     event.preventDefault()
     
-    const response = await api.get(`/users/${username}`)
+    try {
+      const response = await api.get(`/users/${username}`)
 
-    setRepository(response.data)
+      setRepository(response.data)
+    } catch (error) {
+      if (error.response) {
+        setRepository(error.response.data.message)
+      }
+    }
   }
+
+  console.log(repository)
 
   return (
     <Container>
       <div className="container-content">
-        <div className={repository ? "header-container" : "header-container position-top"}>
+        <div 
+          className={repository 
+            ? "header-container" 
+            : "header-container position-top"}
+        >
           <div className="header-box">
-            <img src={logoIcon} alt="Logo" className="logo" />
+            <img 
+              src={logoIcon} 
+              alt="Logo" 
+              className={title === "light" 
+                ? "logo" 
+                : "logo logo-light"} 
+            />
             <button 
               className="btn-theme"
-              onChange={toggleTheme}
+              onClick={() => toggleTheme()}
             >
-              LIGHT
-              <img src={lightIcon} alt="Light icon" />
+              {title === 'light' 
+                      ? 'LIGHT' 
+                      : 'DARK'}
+              <img 
+                src={title === 'light' 
+                ? lightIcon 
+                : darkIcon} 
+                alt="Light icon" 
+                className="btn-theme-icon"
+              />
             </button>
           </div>
-          <form className="input-box" onSubmit={getGithubInfo}>
-            <img src={searchIcon} alt="Search Icon" />
+          <form 
+            className="input-box" 
+            onSubmit={getGithubInfo}
+          >
+            <img 
+              src={searchIcon} 
+              alt="Search Icon" 
+            />
             <input
               type="text"
               name="inpt-search"
@@ -48,67 +81,141 @@ const { title } = useContext(ThemeContext)
               onChange={(event) => setUsername(event.target.value)}
               autoComplete="off"
             />
-            <button type="submit" className="btn-search">Search</button>
+            <button 
+              type="submit" 
+              className="btn-search"
+            >
+              Search
+            </button>
           </form>
         </div>
-        <div className={repository ? "card" : "card is-hidden"}>
-          <img src={repository?.avatar_url} alt="Avatar" className="avatar" />
-          <div className="content-card">
-            <div className="introduction-titles-joined">
-              <div className="titles">
-                <h2>{repository?.name}</h2>
-                <p>@{repository?.login}</p>
-              </div>
-              <div className="joined-box">
-                <p className="joined">Joined {new Date(repository?.created_at).toLocaleDateString("en-US", {
-                  day: "numeric",
-                  month: "short",
-                  year: "numeric",
-                }
-                )}
-            </p>
-              </div>
-              
+        
+        {repository === 'Not Found'
+          ? <div className="card-404">
+              <p>Not Found 😢</p>
             </div>
-            <p className={repository?.bio ? "bio" : "bio bio-not-available"}>{repository?.bio === null ? 'This profile has no bio...' : repository?.bio}</p>
-            <div className="box-follow">
-              <div className="info-follow">
-                <p className="info-follow-title">Repos</p>
-                <p className="info-follow-number">{repository?.public_repos}</p>
-              </div>
-              <div className="info-follow">
-                <p className="info-follow-title">Followers</p>
-                <p className="info-follow-number">{repository?.followers}</p>
-              </div>
-              <div className="info-follow">
-                <p className="info-follow-title">Following</p>
-                <p className="info-follow-number">{repository?.following}</p>
+          : <div 
+              className={repository 
+                ? "card" 
+                : "card is-hidden"}
+              >
+              <img 
+                src={repository?.avatar_url} 
+                alt="Avatar" 
+                className="avatar" 
+              />
+              <div className="content-card">
+                <div className="introduction-titles-joined">
+                  <div className="titles">
+                    <h2>{repository?.name}</h2>
+                    <p>@{repository?.login}</p>
+                  </div>
+                  <div className="joined-box">
+                    <p 
+                      className="joined"
+                    >
+                      Joined {new Date(repository?.created_at)
+                        .toLocaleDateString("en-US", {
+                          day: "numeric",
+                          month: "short",
+                          year: "numeric",
+                        })
+                      }
+                </p>
+                  </div>
+                  
+                </div>
+                <p 
+                  className={repository?.bio 
+                    ? "bio" 
+                    : "bio bio-not-available"}
+                >
+                  {repository?.bio === null 
+                    ? 'This profile has no bio...' 
+                    : repository?.bio}
+                </p>
+                <div className="box-follow">
+                  <div className="info-follow">
+                    <p className="info-follow-title">Repos</p>
+                    <p className="info-follow-number">{repository?.public_repos}</p>
+                  </div>
+                  <div className="info-follow">
+                    <p className="info-follow-title">Followers</p>
+                    <p className="info-follow-number">{repository?.followers}</p>
+                  </div>
+                  <div className="info-follow">
+                    <p className="info-follow-title">Following</p>
+                    <p className="info-follow-number">{repository?.following}</p>
+                  </div>
+                </div>
+                <div className="box-info">
+                  <div className="row">
+                    <div 
+                      className={repository?.location && title === "light"                    
+                        ? "info icon-light" 
+                        : repository?.location  
+                        ? "info"
+                        : "info info-not-available"}
+                    >
+                      <img src={locationIcon} alt="Location icon" />
+                      <p>
+                        {repository?.location === null 
+                          ? 'Not Available' 
+                          : repository?.location}
+                      </p>
+                    </div>
+
+                    <div 
+                      className={repository?.blog && title === "light"
+                      ? "info icon-light" 
+                      : repository?.blog
+                      ? "info"
+                      : "info info-not-available"}
+                    >
+                      <img src={linkIcon} alt="Link Icon" />
+                      <p>
+                        {repository?.blog === "" 
+                          ? 'Not Available' 
+                          : repository?.blog}
+                      </p>
+                    </div>
+
+                  </div>
+                  <div className="row">
+                    <div 
+                      className={repository?.twitter_username && title === "light"
+                      ? "info icon-light" 
+                      : repository?.twitter_username  
+                      ? "info"
+                      : "info info-not-available"}
+                    >
+                      <img src={twitterIcon} alt="Twitter icon" />
+                      <p>
+                        {repository?.twitter_username === null 
+                          ? 'Not Available' 
+                          : repository?.twitter_username}
+                      </p>
+                    </div>
+
+                    <div 
+                      className={repository?.company && title === "light"
+                      ? "info icon-light" 
+                      : repository?.company  
+                      ? "info"
+                      : "info info-not-available"}
+                    >
+                      <img src={companyIcon} alt="Business Icon" />
+                      <p>
+                        {repository?.company === null 
+                          ? 'Not Available' 
+                          : repository?.company}
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="box-info">
-              <div className="row">
-                <div className={repository?.location ? "info" : "info info-not-available"}>
-                  <img src={locationIcon} alt="Location icon" />
-                  <p>{repository?.location === null ? 'Not Available' : repository?.location}</p>
-                </div>
-                <div className={repository?.blog ? "info" : "info info-not-available"}>
-                  <img src={linkIcon} alt="Link Icon" />
-                  <p>{repository?.blog === null ? 'Not Available' : repository?.blog}</p>
-                </div>
-              </div>
-              <div className="row">
-                <div className={repository?.twitter_username ? "info" : "info info-not-available"}>
-                  <img src={twitterIcon} alt="Twitter icon" />
-                  <p>{repository?.twitter_username === null ? 'Not Available' : repository?.twitter_username}</p>
-                </div>
-                <div className={repository?.company ? "info" : "info info-not-available"}>
-                  <img src={companyIcon} alt="Business Icon" />
-                  <p>{repository?.company === null ? 'Not Available' : repository?.company}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        }
       </div>
     </Container>
   )

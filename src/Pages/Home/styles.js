@@ -28,6 +28,16 @@ export const Container = styled.div`
         align-items: center;
         justify-content: space-between;
 
+        .logo {
+          filter: invert(93%) sepia(16%) saturate(115%) hue-rotate(191deg)
+            brightness(99%) contrast(94%);
+        }
+
+        .logo-light {
+          filter: invert(27%) sepia(8%) saturate(53%) hue-rotate(201deg)
+            brightness(95%) contrast(95%);
+        }
+
         .btn-theme {
           background: none;
           cursor: pointer;
@@ -41,7 +51,7 @@ export const Container = styled.div`
           font-size: 11px;
           gap: 10px;
 
-          img {
+          .btn-theme-icon {
             filter: invert(93%) sepia(16%) saturate(115%) hue-rotate(191deg)
               brightness(99%) contrast(94%);
             height: fit-content;
@@ -57,6 +67,7 @@ export const Container = styled.div`
         padding: 8px 8px 8px 25px;
         background-color: ${props => props.theme.colors.primary};
         border-radius: 12px;
+        box-shadow: 0px 10px 32px 0px #0000001c;
 
         img {
           filter: invert(48%) sepia(66%) saturate(7496%) hue-rotate(200deg)
@@ -89,7 +100,7 @@ export const Container = styled.div`
           font-family: 'Space Mono';
           font-size: 14px;
           font-weight: 600;
-          color: ${props => props.theme.colors.text};
+          color: #fff;
           cursor: pointer;
 
           transition: all ease 0.2s;
@@ -107,6 +118,7 @@ export const Container = styled.div`
       padding: 40px;
       gap: 40px;
       border-radius: 12px;
+      box-shadow: 0px 10px 32px 0px #0000001c;
 
       .avatar {
         clip-path: circle(50% at 50% 50%);
@@ -221,15 +233,38 @@ export const Container = styled.div`
                   brightness(88%) contrast(87%);
               }
             }
+
+            .icon-light {
+              img {
+                filter: invert(27%) sepia(8%) saturate(53%) hue-rotate(201deg)
+                  brightness(95%) contrast(95%);
+              }
+            }
           }
         }
       }
     }
+
     .is-hidden {
       display: none;
     }
+
     .position-top {
       justify-content: flex-start;
+    }
+
+    .card-404 {
+      width: 100%;
+      display: flex;
+      background: ${props => props.theme.colors.primary};
+      padding: 40px;
+      gap: 40px;
+      border-radius: 12px;
+      box-shadow: 0px 10px 32px 0px #0000001c;
+
+      p {
+        font-size: 30px;
+      }
     }
   }
   @media (max-width: 768px) {
@@ -280,6 +315,7 @@ export const Container = styled.div`
 
             .titles {
               margin-bottom: 8px;
+              width: 55%;
 
               h2 {
                 margin-bottom: 8px;
