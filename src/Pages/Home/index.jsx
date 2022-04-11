@@ -56,7 +56,8 @@ const [username, setUsername] = useState('')
                   day: "numeric",
                   month: "short",
                   year: "numeric",
-                })}
+                }
+                )}
             </p>
               </div>
               
