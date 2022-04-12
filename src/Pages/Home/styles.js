@@ -137,6 +137,7 @@ export const Container = styled.div`
           .titles {
             font-family: 'IBM Plex Mono';
             margin-bottom: 15px;
+
             h2 {
               color: ${props => props.theme.colors.text};
               font-size: 22px;
@@ -349,6 +350,10 @@ export const Container = styled.div`
             .titles {
               margin-bottom: 8px;
               width: 55%;
+              display: flex;
+              flex-direction: column;
+              align-items: flex-end;
+              text-align: right;
 
               h2 {
                 margin-bottom: 8px;

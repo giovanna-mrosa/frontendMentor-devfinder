@@ -80,6 +80,7 @@ const { title } = useContext(ThemeContext)
               name="inpt-search"
               className="inpt-search"
               placeholder="Search GitHub username..."
+              autocapitalize="off"
               onChange={(event) => setUsername(event.target.value)}
               autoComplete="off"
             />
@@ -118,7 +119,10 @@ const { title } = useContext(ThemeContext)
               <div className="content-card">
                 <div className="introduction-titles-joined">
                   <div className="titles">
-                    <h2>{repository?.name}</h2>
+                    <h2>{repository?.name === null 
+                    ? 'Not Available' 
+                    : repository?.name}
+                    </h2>
                     <p>@{repository?.login}</p>
                   </div>
                   <div className="joined-box">
